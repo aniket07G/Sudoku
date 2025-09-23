@@ -1,79 +1,71 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Sudoku - React Native
 
-# Getting Started
+A modern, clean, and engaging mobile Sudoku app designed for both Android and iOS devices. Enjoy the timeless puzzle game with a user-friendly interface and customizable features.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Table of Contents
+- [About the App](#about-the-app)
+- [Screens Overview](#screens-overview)
+- [Features](#features)
+- [How to Play](#how-to-play)
+- [Contributing](#contributing)
+- [Download & Try the App](#contributing)
+- [License](#license)
 
-## Step 1: Start the Metro Server
+## About the App
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+Sudoku is a classic logic-based number puzzle played on a 9×9 grid, divided into nine 3×3 sub-boxes. The objective is to fill the empty cells with numbers from 1 to 9 so that each number appears only once in each row, each column, and each of the nine 3×3 boxes.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+Our Sudoku app brings this timeless puzzle to your mobile device with a smooth and polished experience. It's designed for players of all skill levels, from beginners who need a little help to experts looking for a true challenge.
 
-```bash
-# using npm
-npm start
+## Screens Overview
 
-# OR using Yarn
-yarn start
-```
+* **Splash Screen**: The initial screen that appears on app launch.
+* **Home Screen**: Features the app logo and provides options to **Play** or learn **About** the app. The Settings button is also located here.
+* **About Screen**: A brief description of the Sudoku puzzle and its rules.
+* **Help & Guidelines Screen**: Detailed information about the app's features and an overview of the Game Screen controls.
+* **Difficulty Selection Screen**: A simple menu to choose your preferred challenge level.
+* **Game Screen**: The main gameplay area with the Sudoku grid, number input bar, and a toolbar for game controls.
+* **Settings Screen**: A comprehensive menu with toggles to customize your gameplay experience.
 
-## Step 2: Start your Application
+## Features
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+* **Multiple Difficulty Levels**: Choose from **Easy**, **Medium**, **Hard**, and **Expert** to match your skill level.
+* **Intuitive Interface**: Simple and clean design with user-friendly controls.
+* **Helpful Hints**: Use the "Hint" feature to get a little help when you're stuck.
+* **Customizable Gameplay**:
+    * **Dark Theme Toggle**: Switch between light and dark themes for comfortable play in any environment.
+    * **Customizable Settings**: Adjust margins, turn the timer on/off, enable haptic feedback (vibrate), and set limits for mistakes and hints.
+* **Smart Highlighting**:
+    * **Mistake Highlighting**: Incorrect entries are clearly marked in red.
+    * **Region Highlighting**: Tap a cell to automatically highlight its row, column, and 3x3 box.
+    * **Same Number Highlighting**: Select a number to highlight all its instances on the board.
+* **Engaging Animations**: Enjoy celebratory animations when you complete a row, a column, a 3x3 box, or the entire puzzle.
+* **Game Controls**: Easily **Undo**, **Erase**, **Pause**, and **Restart** your game at any time.
 
-### For Android
 
-```bash
-# using npm
-npm run android
 
-# OR using Yarn
-yarn android
-```
+## How to Play
 
-### For iOS
+1.  **Launch the App**: The app starts with a smooth splash screen before landing on the Home Screen.
+2.  **Select Difficulty**: Tap the **Play** button and choose your desired difficulty from Easy, Medium, Hard, or Expert.
+3.  **Fill the Grid**: Tap an empty cell on the 9×9 grid. Use the number bar (1-9) at the bottom to enter your choice.
+4.  **Complete the Puzzle**: Continue filling the grid, ensuring each number from 1 to 9 appears only once per row, column, and 3x3 box.
+5.  **Use Tools**:
+    * Need a hint? Tap the **Hint** icon.
+    * Made a mistake? Tap the **Undo** icon to reverse your last move or the **Erase** icon to clear a number.
+    * Need a break? Tap the **Pause** icon.
+6.  **Customize Your Experience**: Access the **Settings** from the gear icon on the Home Screen to adjust your game settings.
 
-```bash
-# using npm
-npm run ios
+## Contributing
 
-# OR using Yarn
-yarn ios
-```
+We welcome feedback and suggestions to improve the app. Please use the "Feedback" option in the Settings menu to share your thoughts.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+##  Download & Try the App
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+You can try out the Sudoku app by downloading the APK from the link below:
+👉 [Download Sudoku APK](https://drive.google.com/file/d/1z29eSwf4rLMKi9d1MapluNqabj0fWasl/view?usp=sharing)
 
-## Step 3: Modifying your App
 
-Now that you have successfully run the app, let's modify it.
+## License
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
