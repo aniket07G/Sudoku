@@ -31,7 +31,8 @@ const initialState = {
     eraseState: 0,
     hintState: 0,
     pasue: false,
-    dataVibrationSetting: true
+    dataVibrationSetting: true,
+    dataMarginSetting: false
 }
 
 export const reducer = (state = initialState, action) => {

@@ -57,73 +57,74 @@ const Help = (props) => {
 
     return (
         <View style={styles.container}>
-            <View style={[styles.header, reduxData.dataToggleIcon && styles.backgroundColorDark, reduxData.dataToggleIcon && styles.headerbottomDark ]}>
+            <View style={[styles.header, reduxData.dataToggleIcon && styles.backgroundColorDark, reduxData.dataToggleIcon && styles.headerbottomDark]}>
                 <TouchableOpacity style={[styles.navigateBack, reduxData.dataToggleIcon && styles.darkElement, reduxData.dataToggleIcon && styles.headerbottomDark]} onPress={() => handleArrowBack()}>
                     <Icons name='arrow-back-circle-outline' size={windowWidth * 0.11} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                 </TouchableOpacity>
                 <View>
-                    <Text style={{ fontSize: windowWidth * 0.075, fontWeight: '500', marginLeft: 4, color: (!reduxData.dataToggleIcon ? 'black' : 'white') }}> Help and Guidelines </Text>
+                    <Text style={{ fontSize: windowWidth * 0.065, lineHeight: windowWidth * 0.09, fontFamily: 'Poppins-SemiBold', fontWeight: '500', marginLeft: 4, color: (!reduxData.dataToggleIcon ? 'black' : 'white') }}> Help and Guidelines </Text>
                 </View>
             </View>
             <View style={[styles.mainView, reduxData.dataToggleIcon && styles.backgroundColorDark]}>
                 <ScrollView style={{ padding: 30 }}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
-                        <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, height: 105, width: 105, justifyContent: 'center', alignItems: 'center' }}>
-                            <Image style={{ height: 100, width: 100 }} source={require('../assets/pastime.png')} />
+                    <View style={{ flex: 1}}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, height: 105, width: 105, justifyContent: 'center', alignItems: 'center' }}>
+                                <Image style={{ height: 100, width: 100 }} source={require('../assets/pastime.png')} />
+                            </View>
                         </View>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            About Our Sudoku Game App:
+                        </Text>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            Welcome to the ultimate Sudoku experience! Our Sudoku game app is designed to provide both novice and expert players with an engaging and user-friendly interface. Here are the features and functionalities that make our app stand out:
+                        </Text>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            Game Screen Overview:
+                        </Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.78 }}>
+                            <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Game.png')} />
+                        </View>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            {keyPoints}
+                        </Text>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            Game Board:
+                        </Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.52 }}>
+                            <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Header.png')} />
+                        </View>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            {keyPoints1}
+                        </Text>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            Input Controls:
+                        </Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.09 }}>
+                            <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/NumberPad.png')} />
+                        </View>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            {keyPoints2}
+                        </Text>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            Additional Functionalities:
+                        </Text>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.1 }}>
+                            <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Features.png')} />
+                        </View>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            {keyPoints3}
+                        </Text>
+                        <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
+                            Why Choose Our Sudoku Game App?
+                        </Text>
+                        <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
+                            Our Sudoku app is crafted with attention to detail and a focus on user experience. We aim to provide a relaxing yet stimulating environment for all Sudoku enthusiasts. Download our app today and start enjoying the timeless puzzle game loved by millions around the world!
+                        </Text>
+                        <Text style={{ fontSize: 30, fontFamily: 'Poppins-SemiBold', color: (!reduxData.dataToggleIcon ? '#003366' : 'white'), textAlign: 'left', fontWeight: '500', marginBottom: 80, marginTop: 20 }}>
+                            Have a Fun :)
+                        </Text>
                     </View>
-                    <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
-                        About Our Sudoku Game App:
-                    </Text>
-                    <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
-                        Welcome to the ultimate Sudoku experience! Our Sudoku game app is designed to provide both novice and expert players with an engaging and user-friendly interface. Here are the features and functionalities that make our app stand out:
-                    </Text>
-                    <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
-                        Game Screen Overview:
-                    </Text>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.78 }}>
-                        <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Game.png')} />
-                    </View>
-                    <Text style={[styles.keyPoints, styles.keyPoints4 ,reduxData.dataToggleIcon && styles.textDark]}>
-                        {keyPoints}
-                    </Text>
-                    <Text style={[styles.headingTextGame, reduxData.dataToggleIcon && styles.textDark]}>
-                        Game Board:
-                    </Text>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.52 }}>
-                        <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Header.png')} />
-                    </View>
-                    <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
-                        {keyPoints1}
-                    </Text>
-                    <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
-                        Input Controls:
-                    </Text>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.09 }}>
-                        <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/NumberPad.png')} />
-                    </View>
-                    <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
-                        {keyPoints2}
-                    </Text>
-                    <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
-                        Additional Functionalities:
-                    </Text>
-                    <View style={{ justifyContent: 'center', alignItems: 'center', height: windowHight * 0.1 }}>
-                        <Image style={{ width: '100%' }} resizeMode="contain" source={require('../assets/Features.png')} />
-                    </View>
-                    <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
-                        {keyPoints3}
-                    </Text>
-                    <Text style={[styles.headingText, reduxData.dataToggleIcon && styles.textDark]}>
-                        Why Choose Our Sudoku Game App?
-                    </Text>
-                    <Text style={[styles.keyPoints, reduxData.dataToggleIcon && styles.textDark]}>
-                        Our Sudoku app is crafted with attention to detail and a focus on user experience. We aim to provide a relaxing yet stimulating environment for all Sudoku enthusiasts. Download our app today and start enjoying the timeless puzzle game loved by millions around the world!
-                    </Text>
-                    <Text style={{ fontSize: 30, color: (!reduxData.dataToggleIcon ? '#003366' : 'white'), textAlign: 'left', fontWeight: '500', marginTop: 20, marginBottom: 80 }}>
-                        Have a Fun :)
-                    </Text>
-
                 </ScrollView>
             </View>
         </View >
@@ -162,37 +163,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     headingText: {
-        fontFamily: 'Roboto',
+        lineHeight: windowWidth * 0.087,
+        fontFamily: 'Poppins-SemiBold',
         fontSize: windowWidth * 0.07,
         color: 'black',
         textAlign: 'left',
-        fontWeight: '700',
-        marginBottom: 20,
         width: '100%',
-        marginTop: 20
-    },
-    headingTextGame: {
-        fontFamily: 'Roboto',
-        fontSize: windowWidth * 0.07,
-        color: '#333333',
-        textAlign: 'left',
-        fontWeight: '700',
-        marginBottom: 20,
-        width: '100%',
-        marginTop: windowHight * 0.01
+        marginTop: windowHight*0.05
     },
     keyPoints: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Poppins-Regular',
+        lineHeight: windowWidth * 0.06,
         fontSize: windowWidth * 0.05,
         color: 'black',
         textAlign: 'justify',
         fontWeight: '500',
-        // marginBottom: 20,
         width: '100%',
         marginTop: 10,
-    },
-    keyPoints4: {
-        marginTop: 25
     },
     backgroundColorDark: {
         backgroundColor: '#0E0D13'

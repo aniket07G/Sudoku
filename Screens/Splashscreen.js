@@ -17,7 +17,7 @@ const Splashscreen = (props) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 100 }}>
             <View style={{ backgroundColor: '#FFFFFF', padding: 5, borderRadius: 10 }}>
-                <Image style={{ height: 130, width: 130 }} source={require('../assets/pastime.png')} />
+                <Image style={{ height: 100, width: 100 }} source={require('../assets/pastime.png')} />
             </View>
         </View>
     )

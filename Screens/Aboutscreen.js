@@ -35,11 +35,11 @@ const About = (props) => {
                     <Icons name='arrow-back-circle-outline' size={windowWidth * 0.11} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                 </TouchableOpacity>
                 <View>
-                    <Text style={{ fontSize: windowWidth * 0.075, fontWeight: '500', marginLeft: 4, color: !reduxData.dataToggleIcon ? 'black' : 'white' }}> About </Text>
+                    <Text style={{ fontSize: windowWidth * 0.07, lineHeight: windowWidth * 0.1,fontFamily: 'Poppins-SemiBold', marginLeft: 4, color: !reduxData.dataToggleIcon ? 'black' : 'white' }}> About </Text>
                 </View>
             </View>
             <View style={[styles.mainView, reduxData.dataToggleIcon && styles.backgroundColorDark]}>
-                <ScrollView style={{ padding: 30 }}>
+                <ScrollView style={{ padding: 30 }} showsVerticalScrollIndicator={false}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
                         <View style={{ backgroundColor: '#FFFFFF', borderRadius: 10, height: 105, width: 105, justifyContent: 'center', alignItems: 'center' }}>
                             <Image style={{ height: 100, width: 100 }} source={require('../assets/pastime.png')} />
@@ -98,15 +98,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     aboutText: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Poppins-Regular',
         fontSize: windowWidth * 0.05,
         color: '#333333',
         textAlign: 'justify',
         fontWeight: '500',
-        marginTop: 10,
-        marginBottom: - windowWidth * 0.07,
-        // backgroundColor: 'yellow'
-
+        marginTop: windowHight*0.02,
+        lineHeight: windowWidth * 0.06
     },
     developerName: {
         fontSize: windowWidth * 0.07,
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        // marginBottom: windowWidth * 0.2
+        marginTop: windowHight*0.03
     },
     socialIcon: {
         justifyContent: 'center',
@@ -149,7 +147,8 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: 'black',
         marginBottom: windowWidth * 0.2,
-        opacity: 0.5
+        opacity: 0.5,
+        fontFamily: 'Poppins-Regular',
     }
 })
 

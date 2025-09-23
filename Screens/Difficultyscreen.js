@@ -1,631 +1,89 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from "react-native";
 import Icons from 'react-native-vector-icons/Ionicons';
-import { useFocusEffect } from '@react-navigation/native';
 import { useSelector } from "react-redux";
+import { useOfflineBoard } from "../Components/OfflineFeature";
 
 const windowHight = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
-console.log("hight", windowHight, "width", windowWidth);
-console.log("ok");
+let grid = Array.from({ length: 9 }, () => Array(9).fill(0));
 
 const Difficultysreen = (props) => {
 
-    const [easyData, setEasyData] = useState({});
-    const [midiumData, setMidiumData] = useState({});
-    const [hardData, setHardData] = useState({});
-    const [expertData, setExpertData] = useState({});
-
+    const [loading, setLoading] = useState({ isLoading: false, difficulty: "" });
     const reduxData = useSelector((state) => state.reducer);
-    const getRandomNumber = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
 
-    useFocusEffect(
-        React.useCallback(() => {
-            forEasy();
-            forMidium();
-            forHard();
-            forExpert();
-        }, [])
-    );
+    const initiateOfflineBoard = (key) => {
+        console.log("Offline");
+        props.navigation.navigate('Game', { GameState: useOfflineBoard(key) });
+        setLoading({ isLoading: false, difficulty: "" });
+    }
 
-    const forEasy = () => {
-
-        const easyObject = {
-            1: {
-                Quetion: [
-                    [8, 2, 0, 0, 7, 4, 0, 0, 0],
-                    [7, 0, 6, 0, 0, 3, 4, 0, 0],
-                    [0, 0, 1, 0, 0, 0, 7, 0, 2],
-                    [0, 0, 7, 0, 9, 0, 0, 0, 0],
-                    [0, 3, 0, 0, 0, 0, 0, 5, 0],
-                    [0, 0, 0, 0, 8, 0, 2, 0, 0],
-                    [6, 0, 0, 0, 3, 0, 1, 0, 0],
-                    [0, 0, 3, 8, 0, 0, 6, 0, 4],
-                    [0, 0, 0, 6, 1, 0, 0, 7, 3],
-                ], mode: 'Easy'
-            },
-
-            2: {
-                Quetion: [
-                    [0, 9, 0, 0, 0, 0, 0, 0, 0],
-                    [6, 4, 0, 0, 0, 1, 0, 0, 0],
-                    [0, 0, 2, 0, 4, 3, 0, 5, 0],
-                    [9, 0, 0, 2, 0, 5, 0, 0, 3],
-                    [0, 0, 0, 0, 0, 0, 6, 0, 9],
-                    [0, 0, 0, 3, 0, 0, 8, 4, 0],
-                    [0, 2, 0, 0, 8, 0, 7, 0, 0],
-                    [5, 0, 0, 0, 0, 9, 0, 0, 4],
-                    [4, 0, 0, 0, 0, 0, 0, 0, 0],
-                ], mode: 'Easy'
-            },
-
-            3: {
-                Quetion: [
-                    [0, 0, 0, 0, 4, 1, 8, 0, 0],
-                    [9, 0, 2, 0, 0, 0, 0, 0, 6],
-                    [0, 8, 0, 0, 0, 7, 0, 0, 5],
-                    [0, 0, 0, 0, 7, 0, 0, 9, 0],
-                    [5, 0, 4, 0, 6, 0, 7, 0, 8],
-                    [0, 2, 0, 0, 3, 0, 0, 0, 0],
-                    [2, 0, 0, 7, 0, 0, 0, 5, 0],
-                    [3, 0, 0, 0, 0, 0, 1, 0, 4],
-                    [0, 0, 5, 4, 1, 0, 0, 0, 0],
-                ], mode: 'Easy'
-            },
-
-            4: {
-                Quetion: [
-                    [0, 0, 0, 4, 0, 5, 0, 8, 0],
-                    [0, 0, 0, 0, 6, 2, 4, 0, 0],
-                    [0, 0, 0, 3, 0, 0, 0, 5, 6],
-                    [0, 0, 7, 0, 0, 6, 0, 2, 3],
-                    [8, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [2, 6, 0, 8, 0, 0, 5, 0, 0],
-                    [9, 7, 0, 0, 0, 4, 0, 0, 0],
-                    [0, 0, 4, 5, 2, 0, 0, 0, 0],
-                    [0, 2, 0, 9, 0, 7, 0, 0, 0],
-                ], mode: 'Easy'
-            },
-
-            5: {
-                Quetion: [
-                    [0, 1, 0, 0, 3, 0, 9, 8, 0],
-                    [8, 0, 0, 0, 5, 1, 0, 0, 7],
-                    [9, 0, 0, 4, 0, 0, 0, 0, 0],
-                    [0, 5, 0, 0, 0, 0, 6, 0, 0],
-                    [1, 7, 0, 0, 2, 0, 0, 4, 3],
-                    [0, 0, 4, 0, 0, 0, 0, 5, 0],
-                    [0, 0, 0, 0, 0, 5, 0, 0, 8],
-                    [5, 0, 0, 8, 1, 0, 0, 0, 4],
-                    [0, 8, 2, 0, 4, 0, 0, 6, 0],
-                ], mode: 'Easy'
-            },
-
-            6: {
-                Quetion: [
-                    [0, 7, 0, 0, 0, 2, 4, 6, 0],
-                    [1, 0, 5, 0, 9, 0, 3, 0, 0],
-                    [3, 0, 0, 0, 0, 0, 0, 7, 0],
-                    [0, 0, 1, 0, 0, 3, 2, 0, 0],
-                    [6, 5, 0, 0, 1, 0, 0, 0, 0],
-                    [0, 0, 0, 8, 0, 0, 0, 0, 0],
-                    [0, 0, 7, 5, 0, 0, 0, 3, 0],
-                    [9, 0, 0, 6, 3, 0, 0, 0, 0],
-                    [0, 1, 0, 0, 0, 0, 0, 0, 4],
-                ], mode: 'Easy'
-            },
-
-            7: {
-                Quetion: [
-                    [0, 4, 1, 8, 0, 0, 5, 7, 0],
-                    [0, 9, 0, 0, 0, 0, 0, 2, 0],
-                    [2, 7, 0, 0, 4, 0, 0, 6, 3],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 4],
-                    [0, 0, 2, 3, 7, 6, 9, 0, 0],
-                    [5, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [7, 2, 0, 0, 5, 0, 0, 4, 8],
-                    [0, 8, 0, 0, 0, 0, 0, 5, 0],
-                    [0, 5, 6, 0, 0, 2, 1, 9, 0],
-                ], mode: 'Easy'
-            },
-
-            8: {
-                Quetion: [
-                    [0, 7, 0, 0, 0, 5, 0, 0, 4],
-                    [9, 0, 6, 0, 0, 3, 0, 0, 0],
-                    [0, 3, 0, 0, 6, 0, 7, 0, 0],
-                    [0, 0, 0, 3, 0, 0, 0, 2, 8],
-                    [0, 0, 2, 0, 0, 0, 3, 0, 0],
-                    [3, 6, 0, 0, 0, 1, 0, 0, 0],
-                    [0, 0, 9, 0, 3, 0, 0, 1, 0],
-                    [0, 0, 0, 1, 0, 0, 4, 0, 2],
-                    [8, 0, 0, 2, 0, 0, 0, 6, 0],
-                ], mode: 'Easy'
-            },
-
-            9: {
-                Quetion: [
-                    [0, 0, 0, 0, 8, 0, 2, 5, 9],
-                    [0, 0, 0, 2, 6, 3, 0, 0, 0],
-                    [1, 7, 2, 0, 0, 0, 0, 0, 8],
-                    [0, 0, 0, 5, 0, 0, 8, 4, 0],
-                    [0, 5, 0, 3, 0, 8, 0, 7, 0],
-                    [0, 4, 3, 0, 0, 2, 0, 0, 0],
-                    [7, 0, 0, 0, 0, 0, 3, 8, 5],
-                    [0, 0, 0, 9, 7, 1, 0, 0, 0],
-                    [4, 2, 6, 0, 3, 0, 0, 0, 0],
-                ], mode: 'Easy'
-            },
-
-            10: {
-                Quetion: [
-                    [0, 2, 0, 0, 0, 0, 0, 7, 0],
-                    [1, 0, 3, 0, 0, 0, 8, 0, 9],
-                    [4, 0, 9, 0, 1, 0, 2, 0, 5],
-                    [0, 0, 0, 8, 0, 1, 0, 0, 0],
-                    [9, 0, 0, 0, 4, 0, 0, 0, 6],
-                    [0, 0, 0, 7, 0, 3, 0, 0, 0],
-                    [2, 0, 8, 0, 7, 0, 6, 0, 4],
-                    [7, 0, 1, 0, 0, 0, 9, 0, 3],
-                    [0, 4, 0, 0, 0, 0, 0, 5, 0],
-                ], mode: 'Easy'
+    const initializeBoard = async (key) => {
+        setLoading({ isLoading: true, difficulty: key });
+        const controller = new AbortController();
+        const { signal } = controller;
+        const id = setTimeout(() => {
+            controller.abort();
+            initiateOfflineBoard(key)
+        }, 10000);
+        try {
+            const response = await fetch("https://youdosudoku.com/api/", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    difficulty: key !== "expert" ? key : "hard", // "easy", "medium", or "hard" (defaults to "easy")
+                    solution: true, // true or false (defaults to true)
+                    array: false // true or false (defaults to false)
+                }),
+                signal
+            });
+            clearTimeout(id);
+            const data = await response.json();
+            const QuetionGrid = data.puzzle;
+            const SolutionGrid = data.solution;
+            const Difficulty = data.difficulty;
+            let cnt = 0;
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    grid[i][j] = Number(QuetionGrid[cnt++]);
+                }
             }
-        }
-        let key = getRandomNumber(1, 10);
-        setEasyData(easyObject[key]);
-    };
-
-    const forMidium = () => {
-
-        const midiumObject = {
-            1: {
-                Quetion: [
-                    [0, 0, 5, 0, 1, 0, 0, 0, 9],
-                    [0, 0, 0, 8, 7, 9, 0, 1, 0],
-                    [9, 0, 0, 0, 2, 0, 0, 0, 4],
-                    [0, 0, 0, 0, 5, 0, 6, 2, 3],
-                    [0, 0, 0, 3, 6, 2, 0, 0, 0],
-                    [2, 6, 3, 0, 4, 0, 0, 0, 0],
-                    [7, 0, 0, 0, 8, 0, 0, 0, 1],
-                    [0, 4, 0, 7, 9, 5, 0, 0, 0],
-                    [8, 0, 0, 0, 3, 0, 7, 0, 0],
-                ], mode: 'Medium'
-
-            },
-
-            2: {
-                Quetion: [
-                    [0, 9, 5, 0, 7, 0, 0, 0, 0],
-                    [0, 7, 0, 0, 0, 6, 0, 9, 8],
-                    [0, 0, 0, 3, 0, 0, 6, 0, 0],
-                    [0, 0, 7, 0, 0, 5, 0, 0, 6],
-                    [4, 0, 3, 0, 0, 2, 0, 1, 0],
-                    [0, 0, 0, 7, 0, 0, 0, 0, 0],
-                    [5, 3, 0, 0, 2, 0, 0, 0, 4],
-                    [0, 8, 6, 0, 0, 0, 0, 0, 3],
-                    [7, 0, 2, 0, 9, 3, 0, 0, 0],
-                ], mode: 'Medium'
-            },
-
-            3: {
-                Quetion: [
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 9, 4, 0, 3, 0],
-                    [5, 0, 0, 1, 3, 6, 4, 0, 0],
-                    [0, 0, 2, 0, 0, 0, 6, 0, 7],
-                    [9, 1, 5, 0, 0, 0, 0, 0, 2],
-                    [0, 0, 7, 0, 0, 0, 8, 0, 5],
-                    [8, 0, 0, 2, 1, 3, 9, 0, 0],
-                    [0, 0, 0, 0, 5, 7, 0, 6, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                ], mode: 'Medium'
-            },
-
-            4: {
-                Quetion: [
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [8, 0, 0, 4, 0, 6, 0, 0, 1],
-                    [0, 7, 5, 0, 1, 0, 4, 6, 0],
-                    [0, 4, 0, 3, 0, 8, 0, 9, 0],
-                    [0, 0, 3, 0, 0, 0, 1, 0, 0],
-                    [0, 5, 0, 1, 0, 4, 0, 7, 0],
-                    [0, 8, 7, 0, 4, 0, 9, 1, 0],
-                    [3, 0, 0, 9, 0, 7, 0, 0, 2],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                ], mode: 'Medium'
-            },
-
-            5: {
-                Quetion: [
-                    [6, 0, 0, 0, 0, 0, 0, 7, 0],
-                    [0, 0, 1, 8, 5, 0, 0, 4, 9],
-                    [0, 8, 0, 3, 0, 0, 0, 1, 0],
-                    [0, 0, 0, 0, 6, 0, 0, 0, 5],
-                    [0, 2, 7, 5, 0, 0, 4, 6, 0],
-                    [1, 0, 0, 0, 2, 4, 0, 0, 0],
-                    [0, 4, 0, 0, 0, 5, 0, 8, 0],
-                    [5, 0, 8, 4, 9, 1, 0, 0, 0],
-                    [0, 1, 0, 0, 0, 0, 0, 5, 4],
-                ], mode: 'Medium'
-            },
-
-            6: {
-                Quetion: [
-                    [0, 8, 4, 0, 0, 0, 0, 6, 3],
-                    [0, 0, 0, 6, 0, 0, 0, 5, 2],
-                    [3, 0, 0, 0, 5, 0, 0, 7, 0],
-                    [0, 0, 0, 0, 9, 5, 0, 0, 0],
-                    [9, 0, 0, 3, 0, 4, 0, 0, 1],
-                    [0, 0, 0, 1, 6, 0, 0, 0, 0],
-                    [0, 1, 0, 0, 3, 0, 0, 0, 4],
-                    [4, 5, 0, 0, 0, 9, 0, 0, 0],
-                    [8, 3, 0, 0, 0, 0, 2, 9, 0],
-                ], mode: 'Medium'
-            },
-
-            7: {
-                Quetion: [
-                    [8, 0, 1, 0, 3, 0, 0, 5, 0],
-                    [0, 0, 0, 0, 0, 7, 1, 9, 3],
-                    [0, 0, 5, 1, 0, 0, 0, 4, 0],
-                    [0, 0, 0, 0, 0, 1, 4, 0, 2],
-                    [0, 1, 0, 0, 0, 0, 0, 3, 0],
-                    [2, 0, 4, 9, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 6, 8, 0, 0],
-                    [9, 5, 7, 4, 0, 0, 0, 0, 0],
-                    [0, 8, 0, 0, 7, 0, 0, 0, 4],
-                ], mode: 'Medium'
-            },
-
-            8: {
-                Quetion: [
-                    [2, 0, 0, 9, 0, 4, 6, 0, 0],
-                    [0, 0, 0, 0, 6, 0, 1, 0, 3],
-                    [0, 0, 9, 0, 0, 3, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 2, 0, 7, 5],
-                    [0, 0, 5, 0, 0, 0, 2, 0, 0],
-                    [1, 9, 0, 4, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 6, 0, 0, 5, 0, 0],
-                    [8, 0, 4, 0, 2, 0, 0, 0, 0],
-                    [0, 0, 3, 7, 0, 8, 0, 0, 2],
-                ], mode: 'Medium'
-            },
-
-            9: {
-                Quetion: [
-                    [7, 2, 3, 0, 5, 1, 4, 6, 0],
-                    [0, 9, 0, 6, 0, 0, 2, 0, 0],
-                    [8, 0, 6, 0, 0, 0, 0, 0, 0],
-                    [0, 7, 8, 4, 0, 5, 0, 1, 0],
-                    [0, 5, 0, 0, 8, 0, 0, 4, 0],
-                    [0, 3, 0, 0, 0, 7, 0, 8, 0],
-                    [0, 0, 0, 0, 0, 0, 3, 0, 4],
-                    [0, 0, 7, 0, 0, 2, 0, 9, 0],
-                    [0, 0, 9, 5, 4, 0, 0, 0, 0],
-                ], mode: 'Medium'
-            },
-
-            10: {
-                Quetion: [
-                    [0, 0, 3, 7, 0, 0, 0, 0, 0],
-                    [1, 0, 0, 0, 8, 0, 0, 0, 0],
-                    [6, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 7, 0, 4, 0],
-                    [2, 0, 0, 0, 0, 0, 6, 0, 0],
-                    [8, 0, 0, 0, 1, 0, 0, 9, 2],
-                    [0, 0, 0, 8, 5, 0, 0, 0, 0],
-                    [0, 2, 4, 3, 0, 0, 0, 0, 5],
-                    [7, 0, 0, 0, 0, 6, 1, 0, 4],
-                ], mode: 'Medium'
+            if (Difficulty === "easy") {
+                const DataToBesent = {
+                    Quetion: grid,
+                    mode: 'Easy'
+                }
+                props.navigation.navigate('Game', { GameState: DataToBesent });
+            } else if (Difficulty === "medium") {
+                const DataToBesent = {
+                    Quetion: grid,
+                    mode: 'Medium'
+                }
+                props.navigation.navigate('Game', { GameState: DataToBesent });
+            } else if (Difficulty === "hard" && key !== "expert") {
+                const DataToBesent = {
+                    Quetion: grid,
+                    mode: 'Hard'
+                }
+                props.navigation.navigate('Game', { GameState: DataToBesent });
+            } else {
+                const DataToBesent = {
+                    Quetion: grid,
+                    mode: 'Expert'
+                }
+                props.navigation.navigate('Game', { GameState: DataToBesent });
             }
-
-        }
-        let key = getRandomNumber(1, 10);
-        setMidiumData(midiumObject[key]);
-
-    };
-
-
-    const forHard = () => {
-
-        const hardObject = {
-
-            1: {
-                Quetion: [
-                    [4, 0, 0, 0, 0, 6, 1, 0, 3],
-                    [0, 0, 7, 9, 0, 0, 0, 0, 8],
-                    [0, 8, 0, 0, 5, 0, 0, 9, 0],
-                    [0, 0, 2, 0, 0, 9, 0, 1, 0],
-                    [3, 0, 0, 0, 0, 0, 0, 0, 2],
-                    [0, 4, 0, 1, 0, 0, 3, 0, 9],
-                    [9, 5, 0, 0, 4, 0, 0, 7, 0],
-                    [2, 0, 4, 0, 0, 0, 9, 0, 0],
-                    [1, 0, 8, 6, 9, 0, 0, 0, 4],
-                ], mode: 'Hard'
-            },
-
-            2: {
-                Quetion: [
-                    [0, 0, 8, 4, 0, 9, 7, 0, 0],
-                    [0, 0, 5, 1, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 7, 0, 2, 9],
-                    [0, 7, 0, 6, 0, 8, 0, 0, 0],
-                    [4, 0, 0, 0, 0, 2, 6, 9, 0],
-                    [0, 6, 0, 0, 4, 5, 0, 0, 0],
-                    [2, 0, 0, 0, 0, 0, 0, 6, 5],
-                    [0, 0, 0, 0, 0, 0, 4, 7, 0],
-                    [0, 0, 0, 0, 0, 0, 8, 0, 0],
-                ], mode: 'Hard'
-            },
-
-            3: {
-                Quetion: [
-                    [0, 0, 7, 0, 0, 6, 0, 0, 9],
-                    [0, 5, 0, 0, 7, 0, 0, 1, 0],
-                    [9, 0, 0, 8, 0, 0, 2, 0, 0],
-                    [7, 0, 0, 2, 0, 0, 4, 0, 0],
-                    [0, 4, 0, 0, 9, 0, 0, 8, 0],
-                    [0, 0, 9, 0, 0, 4, 0, 0, 6],
-                    [0, 0, 1, 0, 0, 9, 0, 0, 4],
-                    [0, 6, 0, 0, 5, 0, 0, 3, 0],
-                    [5, 0, 0, 1, 0, 0, 8, 0, 0],
-                ], mode: 'Hard'
-            },
-
-            4: {
-                Quetion: [
-                    [1, 0, 0, 0, 7, 0, 0, 0, 8],
-                    [0, 8, 0, 4, 0, 9, 0, 3, 0],
-                    [0, 0, 2, 0, 0, 0, 6, 0, 0],
-                    [0, 7, 0, 9, 0, 5, 0, 8, 0],
-                    [3, 0, 0, 0, 0, 0, 0, 0, 2],
-                    [0, 9, 0, 8, 0, 2, 0, 4, 0],
-                    [0, 0, 3, 0, 0, 0, 5, 0, 0],
-                    [0, 2, 0, 5, 0, 7, 0, 6, 0],
-                    [7, 0, 0, 0, 2, 0, 0, 0, 4],
-                ], mode: 'Hard'
-            },
-
-            5: {
-                Quetion: [
-                    [0, 6, 0, 5, 3, 0, 0, 1, 0],
-                    [0, 3, 0, 0, 8, 7, 5, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 4],
-                    [0, 5, 1, 7, 0, 0, 2, 0, 0],
-                    [0, 0, 0, 0, 9, 0, 0, 0, 0],
-                    [0, 0, 3, 0, 0, 2, 6, 7, 0],
-                    [3, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 7, 9, 1, 0, 0, 5, 0],
-                    [0, 1, 0, 0, 5, 3, 0, 6, 0],
-                ], mode: 'Hard'
-            },
-
-            6: {
-                Quetion: [
-                    [0, 7, 4, 0, 0, 0, 0, 5, 0],
-                    [3, 6, 0, 4, 0, 0, 0, 0, 0],
-                    [5, 0, 0, 0, 6, 3, 0, 0, 0],
-                    [8, 0, 5, 6, 0, 0, 0, 3, 0],
-                    [0, 4, 0, 0, 8, 0, 0, 6, 0],
-                    [0, 3, 0, 0, 0, 7, 4, 0, 8],
-                    [0, 0, 0, 1, 2, 0, 0, 0, 5],
-                    [0, 0, 0, 0, 0, 9, 0, 2, 7],
-                    [0, 5, 0, 0, 0, 0, 9, 8, 0],
-                ], mode: 'Hard'
-            },
-
-            7: {
-                Quetion: [
-                    [0, 0, 0, 5, 0, 3, 0, 0, 0],
-                    [7, 0, 0, 8, 0, 0, 0, 0, 4],
-                    [0, 6, 0, 7, 1, 0, 0, 8, 3],
-                    [0, 0, 0, 0, 2, 0, 0, 1, 6],
-                    [0, 0, 5, 0, 0, 0, 0, 0, 0],
-                    [2, 0, 0, 3, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 1, 0, 0],
-                    [9, 5, 0, 0, 0, 4, 0, 6, 0],
-                    [0, 0, 0, 0, 6, 0, 0, 4, 8],
-                ], mode: 'Hard'
-            },
-
-            8: {
-                Quetion: [
-                    [0, 0, 7, 1, 0, 8, 9, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [8, 0, 2, 5, 0, 9, 7, 0, 4],
-                    [6, 0, 8, 3, 0, 2, 1, 0, 9],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [7, 0, 1, 9, 0, 4, 5, 0, 2],
-                    [5, 0, 9, 8, 0, 7, 3, 0, 6],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 6, 2, 0, 5, 8, 0, 0],
-                ], mode: 'Hard'
-            },
-
-            9: {
-                Quetion: [
-                    [4, 0, 5, 0, 9, 0, 0, 7, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 2, 0],
-                    [0, 0, 0, 0, 4, 0, 3, 5, 0],
-                    [0, 0, 3, 0, 0, 5, 0, 0, 0],
-                    [0, 0, 9, 6, 0, 3, 8, 0, 0],
-                    [0, 0, 0, 2, 0, 0, 7, 0, 0],
-                    [0, 3, 1, 0, 5, 0, 0, 0, 0],
-                    [0, 7, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 8, 0, 0, 3, 0, 9, 0, 1],
-                ], mode: 'Hard'
-            },
-
-            10: {
-                Quetion: [
-                    [7, 0, 0, 8, 0, 1, 2, 0, 0],
-                    [4, 0, 0, 0, 0, 0, 0, 0, 6],
-                    [0, 5, 0, 3, 0, 9, 0, 0, 0],
-                    [0, 7, 0, 0, 0, 0, 9, 0, 0],
-                    [2, 9, 0, 0, 0, 0, 0, 8, 4],
-                    [0, 0, 3, 0, 0, 0, 0, 6, 0],
-                    [0, 0, 0, 4, 0, 3, 0, 9, 0],
-                    [3, 0, 0, 0, 0, 0, 0, 0, 1],
-                    [0, 0, 4, 1, 0, 8, 0, 0, 7],
-                ], mode: 'Hard'
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.log('Fetch aborted');
+            } else {
+                console.log("Getting Error", error);
             }
-
+        } finally {
+            setLoading({ isLoading: false, difficulty: "" });
         }
-        let key = getRandomNumber(1, 10);
-        setHardData(hardObject[key]);
-    };
-
-
-    const forExpert = () => {
-
-        const expertobject = {
-
-            1: {
-                Quetion: [
-                    [8, 0, 0, 0, 6, 0, 0, 7, 0],
-                    [2, 0, 6, 0, 0, 7, 0, 0, 0],
-                    [7, 4, 0, 3, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 7, 4, 3, 0, 1],
-                    [0, 0, 0, 1, 0, 8, 0, 0, 0],
-                    [0, 0, 1, 2, 0, 0, 0, 0, 0],
-                    [3, 0, 2, 0, 1, 5, 0, 0, 6],
-                    [4, 0, 0, 0, 2, 6, 1, 0, 0],
-                    [1, 0, 0, 0, 0, 3, 2, 0, 4],
-                ], mode: 'Expert'
-            },
-
-            2: {
-                Quetion: [
-                    [3, 0, 9, 0, 0, 4, 0, 6, 5],
-                    [0, 0, 1, 8, 0, 0, 0, 0, 9],
-                    [6, 0, 0, 0, 0, 9, 0, 0, 0],
-                    [0, 2, 0, 4, 9, 0, 0, 0, 0],
-                    [1, 5, 0, 0, 0, 0, 0, 3, 8],
-                    [0, 0, 0, 0, 8, 1, 0, 5, 0],
-                    [0, 0, 0, 9, 0, 0, 0, 0, 3],
-                    [4, 0, 0, 0, 0, 2, 5, 0, 0],
-                    [2, 3, 0, 1, 0, 0, 6, 0, 0],
-                ], mode: 'Expert'
-            },
-
-            3: {
-                Quetion: [
-                    [0, 0, 9, 0, 0, 2, 0, 0, 5],
-                    [0, 4, 0, 0, 9, 0, 0, 3, 0],
-                    [5, 0, 0, 7, 0, 0, 1, 0, 0],
-                    [9, 0, 0, 1, 0, 0, 6, 0, 0],
-                    [0, 6, 0, 0, 5, 0, 0, 7, 0],
-                    [0, 0, 5, 0, 0, 6, 0, 0, 2],
-                    [0, 0, 3, 0, 0, 5, 0, 0, 6],
-                    [0, 2, 0, 0, 4, 0, 0, 8, 0],
-                    [4, 0, 0, 3, 0, 0, 7, 0, 0],
-                ], mode: 'Expert'
-            },
-
-            4: {
-                Quetion: [
-                    [0, 0, 7, 1, 0, 8, 9, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [8, 0, 2, 5, 0, 9, 7, 0, 4],
-                    [6, 0, 8, 3, 0, 2, 1, 0, 9],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [7, 0, 1, 9, 0, 4, 5, 0, 2],
-                    [5, 0, 9, 8, 0, 7, 3, 0, 6],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 6, 2, 0, 5, 8, 0, 0],
-                ], mode: 'Expert'
-            },
-
-            5: {
-                Quetion: [
-                    [0, 0, 0, 3, 0, 5, 0, 0, 0],
-                    [0, 0, 5, 0, 4, 0, 6, 0, 0],
-                    [0, 1, 0, 0, 0, 0, 0, 9, 0],
-                    [1, 0, 0, 0, 9, 0, 0, 0, 2],
-                    [0, 9, 0, 1, 0, 4, 0, 7, 0],
-                    [6, 0, 0, 0, 7, 0, 0, 0, 8],
-                    [0, 8, 0, 0, 0, 0, 0, 2, 0],
-                    [0, 0, 6, 0, 3, 0, 7, 0, 0],
-                    [0, 0, 0, 6, 0, 2, 0, 0, 0],
-                ], mode: 'Expert'
-            },
-
-            6: {
-                Quetion: [
-                    [3, 0, 0, 4, 2, 0, 5, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 0, 6],
-                    [0, 0, 5, 3, 0, 0, 2, 1, 9],
-                    [9, 0, 6, 0, 0, 0, 7, 8, 1],
-                    [0, 0, 0, 0, 9, 0, 0, 0, 0],
-                    [7, 2, 4, 0, 0, 0, 9, 0, 5],
-                    [6, 4, 3, 0, 0, 1, 8, 0, 0],
-                    [5, 0, 0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 8, 3, 0, 0, 4],
-                ], mode: 'Expert'
-            },
-
-            7: {
-                Quetion: [
-                    [3, 0, 6, 0, 7, 0, 0, 0, 9],
-                    [0, 2, 0, 0, 6, 0, 0, 7, 0],
-                    [4, 0, 0, 0, 0, 3, 6, 0, 0],
-                    [0, 0, 0, 0, 0, 2, 8, 0, 0],
-                    [5, 9, 0, 0, 4, 0, 0, 1, 7],
-                    [0, 0, 3, 7, 0, 0, 0, 0, 0],
-                    [0, 0, 7, 2, 0, 0, 0, 0, 8],
-                    [0, 4, 0, 0, 8, 0, 0, 6, 0],
-                    [9, 0, 0, 0, 1, 0, 5, 0, 4],
-                ], mode: 'Expert'
-            },
-
-            8: {
-                Quetion: [
-                    [9, 0, 0, 0, 1, 0, 0, 0, 3],
-                    [7, 0, 0, 9, 0, 0, 8, 6, 0],
-                    [0, 5, 3, 0, 0, 0, 0, 0, 0],
-                    [1, 0, 0, 6, 0, 0, 0, 0, 0],
-                    [0, 8, 6, 0, 0, 0, 4, 3, 0],
-                    [0, 0, 0, 0, 0, 8, 0, 0, 1],
-                    [0, 0, 0, 0, 0, 0, 1, 8, 0],
-                    [0, 4, 9, 0, 0, 3, 0, 0, 2],
-                    [6, 0, 0, 0, 5, 0, 0, 0, 9],
-                ], mode: 'Expert'
-            },
-
-            9: {
-                Quetion: [
-                    [0, 0, 0, 0, 0, 0, 0, 0, 5],
-                    [5, 0, 6, 3, 8, 0, 0, 0, 0],
-                    [0, 9, 0, 0, 0, 4, 0, 6, 0],
-                    [3, 0, 9, 0, 0, 0, 0, 0, 6],
-                    [0, 7, 0, 5, 0, 8, 0, 3, 0],
-                    [2, 0, 0, 0, 0, 0, 5, 0, 4],
-                    [0, 6, 0, 2, 0, 0, 0, 8, 0],
-                    [0, 0, 0, 0, 3, 7, 1, 0, 9],
-                    [4, 0, 0, 0, 0, 0, 0, 0, 0],
-                ], mode: 'Expert'
-            },
-
-            10: {
-                Quetion: [
-                    [5, 0, 4, 0, 0, 0, 0, 7, 0],
-                    [0, 0, 0, 0, 7, 1, 5, 0, 0],
-                    [2, 0, 0, 0, 0, 4, 0, 9, 0],
-                    [6, 0, 3, 0, 8, 0, 0, 0, 2],
-                    [0, 0, 9, 0, 0, 0, 0, 0, 0],
-                    [7, 1, 0, 6, 0, 0, 0, 0, 0],
-                    [0, 4, 0, 8, 0, 0, 0, 0, 0],
-                    [8, 0, 0, 1, 0, 7, 0, 4, 0],
-                    [0, 0, 0, 0, 0, 0, 0, 3, 6],
-                ], mode: 'Expert'
-            }
-
-        }
-        let key = getRandomNumber(1, 10);
-        setExpertData(expertobject[key]);
-    };
+    }
 
     return (
         <View style={[styles.container, reduxData.dataToggleIcon && styles.backgroundColorDark]}>
@@ -636,22 +94,38 @@ const Difficultysreen = (props) => {
             </View>
             <View style={styles.outerDifficulty}>
                 <View style={[styles.Difficulty, reduxData.dataToggleIcon && styles.darkElement]}>
-                    <Text style={{ fontSize: windowWidth * 0.12, fontStyle: 'normal', fontWeight: 600, color: (!reduxData.dataToggleIcon ? '#6F6F6F' : '#7E7F91') }}>Mode</Text>
+                    <Text style={{ fontSize: windowWidth * 0.11, lineHeight: windowWidth * 0.16, fontFamily: 'Poppins-Bold', color: (!reduxData.dataToggleIcon ? '#6F6F6F' : '#7E7F91') }}>Mode</Text>
                 </View>
             </View>
             <View style={styles.outerMainView}>
                 <View style={[styles.mainview, reduxData.dataToggleIcon && styles.darkElement]}>
-                    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Game', { GameState: easyData })}>
-                        <Text style={styles.text}>Easy</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => initializeBoard("easy")}>
+                        {loading.isLoading && loading.difficulty === "easy" ? (
+                            <ActivityIndicator size={"large"} color={"#FFFFFF"} />
+                        ) : (
+                            <Text style={styles.text}>Easy</Text>
+                        )}
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Game', { GameState: midiumData })}>
-                        <Text style={styles.text}>Medium</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => initializeBoard("medium")}>
+                        {loading.isLoading && loading.difficulty === "medium" ? (
+                            <ActivityIndicator size={"large"} color={"#FFFFFF"} />
+                        ) : (
+                            <Text style={styles.text}>Medium</Text>
+                        )}
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Game', { GameState: hardData })}>
-                        <Text style={styles.text}>Hard</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => initializeBoard("hard")}>
+                        {loading.isLoading && loading.difficulty === "hard" ? (
+                            <ActivityIndicator size={"large"} color={"#FFFFFF"} />
+                        ) : (
+                            <Text style={styles.text}>Hard</Text>
+                        )}
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('Game', { GameState: expertData })}>
-                        <Text style={styles.text}>Expert</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => initializeBoard("expert")}>
+                        {loading.isLoading && loading.difficulty === "expert" ? (
+                            <ActivityIndicator size={"large"} color={"#FFFFFF"} />
+                        ) : (
+                            <Text style={styles.text}>Expert</Text>
+                        )}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -666,11 +140,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     outerDifficulty: {
-        flex: 1,
+        flex: 0.75,
         justifyContent: "center",
         alignItems: 'center',
         width: windowWidth,
-        // backgroundColor: 'green'
     },
     Difficulty: {
         justifyContent: 'center',
@@ -714,12 +187,11 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: windowWidth * 0.1,
-        fontWeight: '700',
-        fontFamily: 'Arial',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
+        textAlign: 'center',
+        textAlignVertical: 'center',
         color: '#FFFFFF',
+        fontFamily: 'Poppins-Regular',
+        includeFontPadding: false,
     },
     navigateBack: {
         justifyContent: 'center',
@@ -730,19 +202,19 @@ const styles = StyleSheet.create({
     innerNavigateBack: {
         backgroundColor: 'blue',
         width: windowWidth * 0.11,
-        height:  windowWidth * 0.11,
+        height: windowWidth * 0.11,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: (windowWidth * 0.11)/2,
+        borderRadius: (windowWidth * 0.11) / 2,
         backgroundColor: '#FFFFFF'
     },
     backgroundColorDark: {
         backgroundColor: '#0E0D13'
-   },
-   darkElement: {
-       backgroundColor: '#222431',
-       borderColor: '#323440'
-   },
+    },
+    darkElement: {
+        backgroundColor: '#222431',
+        borderColor: '#323440'
+    },
 })
 
 export default Difficultysreen

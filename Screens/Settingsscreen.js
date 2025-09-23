@@ -186,7 +186,7 @@ const Settingsscreen = (props) => {
                     <Icons name='arrow-back-circle-outline' size={windowWidth * 0.11} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                 </TouchableOpacity>
                 <View>
-                    <Text style={[styles.textSetting, reduxData.dataToggleIcon && styles.textInDark]}> Settings </Text>
+                    <Text style={[styles.textSetting, { lineHeight: windowWidth * 0.1, fontFamily: 'Poppins-SemiBold' }, reduxData.dataToggleIcon && styles.textInDark]}> Settings </Text>
                 </View>
             </View>
             <View style={[styles.settingsContainer, reduxData.dataToggleIcon && styles.darkBackground]}>
@@ -196,7 +196,7 @@ const Settingsscreen = (props) => {
                             <MarginIcon name='grid-large' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Margin </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Margin </Text>
                             <Text style={[styles.extraText, reduxData.dataToggleIcon && styles.darkText]}>Space Between Cells</Text>
                         </View>
                         {reduxData.dataMarginSetting ? (
@@ -218,7 +218,7 @@ const Settingsscreen = (props) => {
                             <TimerIcon name='timer-outline' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Timer </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Timer </Text>
                         </View>
                         {reduxData.dataTimerSetting ? (
                             <>
@@ -239,7 +239,7 @@ const Settingsscreen = (props) => {
                             <VibrationIcon name='vibration' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Vibrate </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Vibrate </Text>
                         </View>
                         {reduxData.dataVibrationSetting ? (
                             <>
@@ -260,7 +260,7 @@ const Settingsscreen = (props) => {
                             <MistakeIcon name='circle-with-cross' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Mistake Limit </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Mistake Limit </Text>
                         </View>
                         {reduxData.dataMistakeSetting ? (
                             <>
@@ -281,7 +281,7 @@ const Settingsscreen = (props) => {
                             <HintIcon name='lightbulb-on-outline' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Hint Limit </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Hint Limit </Text>
                         </View>
                         {reduxData.dataHintSetting ? (
                             <>
@@ -302,7 +302,7 @@ const Settingsscreen = (props) => {
                             <CheckIcon name='checkmark-circle-outline' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, { fontSize: windowWidth * 0.0525 }]}> Completion Animation </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, { fontSize: windowWidth * 0.045 }]}> Completion Animation </Text>
                             <Text style={[styles.extraText, reduxData.dataToggleIcon && styles.darkText]}>A blink animation displays when any row, coloumn and box is completed  </Text>
                         </View>
                         {reduxData.dataCompletionAnimationSetting ? (
@@ -324,7 +324,7 @@ const Settingsscreen = (props) => {
                             <NumberIcon name='number' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, { fontSize: windowWidth * 0.047 }]}> Highlight Same Numbers </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, { fontSize: windowWidth * 0.04 }]}> Highlight Same Numbers </Text>
                             <Text style={[styles.extraText, reduxData.dataToggleIcon && styles.darkText, { fontSize: windowWidth * 0.028 }]}>When a number is selected, all the cells with the same numbers get highlighted </Text>
                         </View>
                         {reduxData.dataHighlightSameNumber ? (
@@ -368,7 +368,7 @@ const Settingsscreen = (props) => {
                             <FeedbackIcon name='mail-outline' size={windowWidth * 0.09} color={!reduxData.dataToggleIcon ? 'black' : 'white'} />
                         </View>
                         <View style={styles.textArea}>
-                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark]}> Feedback </Text>
+                            <Text style={[styles.settingText, reduxData.dataToggleIcon && styles.textInDark, {lineHeight: windowWidth * 0.09}]}> Feedback </Text>
                         </View>
                         <TouchableOpacity style={styles.toggle}>
                             {/* <SettingToggle name='toggle-on' size={windowWidth * 0.13} color='blue' /> */}
@@ -430,19 +430,23 @@ const styles = StyleSheet.create({
     textArea: {
         flex: 4,
         flexDirection: 'column',
-        // backgroundColor: 'blue',
         justifyContent: 'center',
-        alignItems: 'flex-start',
+        alignItems: 'flex-start'
     },
     settingText: {
-        fontSize: windowWidth * 0.07,
+        fontSize: windowWidth * 0.06,
+        lineHeight: windowWidth * 0.06,
+        fontFamily: 'Poppins-Regular',
         color: 'black',
-        fontWeight: '400'
+        includeFontPadding: false,
     },
     extraText: {
         fontSize: windowWidth * 0.03,
         marginLeft: windowWidth * 0.02,
-        color: '#6F6F6F'
+        color: '#6F6F6F',
+        fontFamily: 'Poppins-Light',
+        lineHeight: windowWidth * 0.031,
+        includeFontPadding: false,
     },
     textSetting: {
         fontSize: windowWidth * 0.075,
@@ -479,7 +483,8 @@ const styles = StyleSheet.create({
     },
     versionText: {
         fontSize: windowWidth * 0.05,
-        color: '#6F6F6F'
+        color: '#6F6F6F',
+        fontFamily: 'Poppins-Regular'
     }
 })
 

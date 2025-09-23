@@ -40,7 +40,7 @@ const Homescreen = (props) => {
                     dispatch(MarginSettingAction(false));
                 }
             } else {
-                dispatch(MarginSettingAction(true));
+                dispatch(MarginSettingAction(false));
             }
 
             const timer = await AsyncStorage.getItem('timer-key');
@@ -75,7 +75,7 @@ const Homescreen = (props) => {
             } else {
                 dispatch(HintSettingAction(true));
             }
-        
+
             const completionanimation = await AsyncStorage.getItem('completionanimation-key');
             if (completionanimation !== null) {
                 if (completionanimation === 'true') {
@@ -139,8 +139,8 @@ const Homescreen = (props) => {
                 </View>
             </View>
             <View style={styles.sudoku}>
-                <Text style={[styles.sudokuText, reduxData.dataToggleIcon && styles.textDark]}>SUDOKU</Text>
-                <Text style={[styles.Game, reduxData.dataToggleIcon && styles.textDark]}>GAME</Text>
+                <Text style={[styles.sudokuText, reduxData.dataToggleIcon && styles.textDarkSudoku]}>SUDOKU</Text>
+                <Text style={[styles.Game, reduxData.dataToggleIcon && styles.textDarkGame]}>GAME</Text>
             </View>
             <View style={styles.outerMainview}>
                 <View style={[styles.mainview, reduxData.dataToggleIcon && styles.darkElement]}>
@@ -200,12 +200,11 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: windowWidth * 0.12,
-        fontWeight: '700',
-        fontFamily: 'Arial',
-        justifyContent: 'center',
-        alignContent: 'center',
-        alignItems: 'center',
-        color: '#FFFFFF',
+        fontFamily: 'Poppins-Medium',
+        includeFontPadding: false,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        color: '#ffffffff',
     },
     outerHome: {
         flex: 1,
@@ -242,26 +241,25 @@ const styles = StyleSheet.create({
         // backgroundColor: 'blue'
     },
     sudokuText: {
-        fontSize: windowWidth * 0.2 + 10,
-        fontWeight: 'bold',
-        fontFamily: 'Arial',
-        color: '#6F6F6F',
+        fontSize: windowWidth * 0.2,
+        fontFamily: 'Poppins-Bold',
+        color: '#1A237E',
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
         letterSpacing: -5,
+        marginTop: windowHight * 0.04
 
     },
     Game: {
         fontSize: windowWidth * 0.12,
-        fontWeight: 'bold',
-        fontFamily: 'Arial',
-        color: '#6F6F6F',
+        fontFamily: 'Poppins-Bold',
+        color: '#1565C0',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: - windowWidth * 0.09,
+        marginTop: - windowWidth * 0.12,
         letterSpacing: -3,
-        marginBottom: windowHight * 0.09
+        marginBottom: windowHight * 0.09,
     },
     settingIcon: {
         justifyContent: 'center',
@@ -284,7 +282,13 @@ const styles = StyleSheet.create({
     },
     textDark: {
         color: '#9CABBE'
-    }
+    },
+    textDarkSudoku: {
+        color: '#E3F2FD',  
+    },
+    textDarkGame: {
+        color: '#90CAF9',  
+    },
 })
 
 export default Homescreen;

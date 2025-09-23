@@ -204,7 +204,7 @@ const SudokuBoard = (props) => {
             }
             return true;
           }
-          if (highlightedCells && highlightedCells.cellsGrid !== undefined && rowHintIndex !== null && columnHintIndex !== null) {
+          if (rowHintIndex !== null && columnHintIndex !== null) {
             isAllRight = investigate();
           }
           if (isAllRight) {
@@ -219,7 +219,7 @@ const SudokuBoard = (props) => {
             }
             hintRowCol = `${rowHintIndex}${columnHintIndex}`;
             alterHintArray(true);
-            j = 10;
+            break;
           }
         }
       }
@@ -887,15 +887,14 @@ const styles = StyleSheet.create({
     margin: 2,
   },
   cellText: {
-    // fontSize: 30,
     fontSize: windowWidth * 0.074,
-    fontWeight: '100',
-    fontFamily: 'Arial',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
+    fontFamily: 'Poppins-Regular',
+    includeFontPadding: false,
+    textAlign: 'center',           
+    textAlignVertical: 'center',   
     color: 'black',
-  },
+    flex: 1,                        
+},
   boundaryCellColumn: {
     borderRightWidth: 2,
   },

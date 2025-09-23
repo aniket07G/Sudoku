@@ -34,12 +34,12 @@ const NumberLine = (props) => {
     return (
         <View style={[styles.container,
         reduxData.dataToggleIcon && styles.darkElementOuter,
-        !reduxData.dataMarginSetting && {padding: 0, borderWidth: 1.5}]}>
+        !reduxData.dataMarginSetting && { padding: 0, borderWidth: 1.5 }]}>
             {Nline.map((num, index) => (
                 <TouchableOpacity key={index} style={[styles.numberButton,
                 selectedNumber === num && (!reduxData.dataToggleIcon ? styles.selectedNumber : styles.selectedNumberDark),
                 reduxData.dataToggleIcon && styles.darkElement,
-                !reduxData.dataMarginSetting && {margin: 0, borderWidth: 1}
+                !reduxData.dataMarginSetting && { margin: 0, borderWidth: 1 }
                 ]} activeOpacity={!reduxData.dataMarginSetting ? 0.6 : 0.2} onPress={() => handelpress(num)}>
                     <Text style={[styles.numberText, reduxData.dataToggleIcon && styles.numberTextDark]}> {num} </Text>
                 </TouchableOpacity>
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
         margin: 1,
     },
     numberText: {
-        // fontSize: 30,
         fontSize: windowWidth * 0.074,
         fontWeight: '100',
-        fontFamily: 'Arial',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
+        fontFamily: 'Poppins-Regular',
+        includeFontPadding: false,
+        textAlign: 'center',           
+        textAlignVertical: 'center',   
         color: 'black',
+        flex: 1,                        
     },
     selectedNumber: {
         // backgroundColor: 'transperent',
