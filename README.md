@@ -70,9 +70,9 @@ You can try out the Sudoku app by downloading the APK from the link below:
 ##  Game Screenshots
 
 <p align="center">
-  <img src="./assets/screenshots/1.jpg" width="280" style="margin: 10px;" />
-  <img src="./assets/screenshots/2.jpg" width="280" style="margin: 10px;" />
-  <img src="./assets/screenshots/3.jpg" width="280" style="margin: 10px;" />
+  <img src="./assets/screenshots/1.jpg" width="270" style="margin: 10px;" />
+  <img src="./assets/screenshots/2.jpg" width="270" style="margin: 10px;" />
+  <img src="./assets/screenshots/3.jpg" width="270" style="margin: 10px;" />
 </p>
 
 ## License
