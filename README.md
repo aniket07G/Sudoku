@@ -97,6 +97,7 @@ You can try out the Sudoku app by downloading the APK from the link below:
   <img src="./assets/screenshots/25.jpg" width="270" style="margin: 10px;" />
   <img src="./assets/screenshots/26.jpg" width="270" style="margin: 10px;" />
   <img src="./assets/screenshots/27.jpg" width="270" style="margin: 10px;" />
+  <img src="./assets/screenshots/30.jpg" width="270" style="margin: 10px;" />
   <img src="./assets/screenshots/28.jpg" width="270" style="margin: 10px;" />
   <img src="./assets/screenshots/29.jpg" width="270" style="margin: 10px;" />
 </p>
