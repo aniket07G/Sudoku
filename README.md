@@ -1,3 +1,4 @@
+
 # Sudoku - React Native
 
 A modern, clean, and engaging mobile Sudoku app designed for both Android and iOS devices. Enjoy the timeless puzzle game with a user-friendly interface and customizable features.
@@ -9,6 +10,7 @@ A modern, clean, and engaging mobile Sudoku app designed for both Android and iO
 - [How to Play](#how-to-play)
 - [Contributing](#contributing)
 - [Download & Try the App](#contributing)
+- [Game Screenshots](#contributing)
 - [License](#license)
 
 ## About the App
@@ -65,6 +67,13 @@ We welcome feedback and suggestions to improve the app. Please use the "Feedback
 You can try out the Sudoku app by downloading the APK from the link below:
 👉 [Download Sudoku APK](https://drive.google.com/file/d/1z29eSwf4rLMKi9d1MapluNqabj0fWasl/view?usp=sharing)
 
+##  Game Screenshots
+
+<p align="center">
+  <img src="./assets/screenshots/1.jpg" width="280" style="margin: 10px;" />
+  <img src="./assets/screenshots/2.jpg" width="280" style="margin: 10px;" />
+  <img src="./assets/screenshots/3.jpg" width="280" style="margin: 10px;" />
+</p>
 
 ## License
 
